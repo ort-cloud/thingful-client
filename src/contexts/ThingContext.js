@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
+import React, {Component} from "react";
 
 export const nullThing = {
   author: {},
   tags: [],
-}
+};
 
 const ThingContext = React.createContext({
   thing: nullThing,
   reviews: [],
   error: null,
   setError: () => {},
-  clearError: () => { },
+  clearError: () => {},
   setThing: () => {},
   clearThing: () => {},
   setReviews: () => {},
   addReview: () => {},
-})
+});
 
-export default ThingContext
+export default ThingContext;
 
 export class ThingProvider extends Component {
   state = {
@@ -26,33 +26,30 @@ export class ThingProvider extends Component {
   };
 
   setError = error => {
-    console.error(error)
-    this.setState({ error })
-  }
+    console.error(error);
+    this.setState({error});
+  };
 
   clearError = () => {
-    this.setState({ error: null })
-  }
+    this.setState({error: null});
+  };
 
   setThing = thing => {
-    this.setState({ thing })
-  }
+    this.setState({thing});
+  };
 
   setReviews = reviews => {
-    this.setState({ reviews })
-  }
+    this.setState({reviews});
+  };
 
   clearThing = () => {
-    this.setThing(nullThing)
-    this.setReviews([])
-  }
+    this.setThing(nullThing);
+    this.setReviews([]);
+  };
 
   addReview = review => {
-    this.setReviews([
-      ...this.state.reviews,
-      review
-    ])
-  }
+    this.setReviews([...this.state.reviews, review]);
+  };
 
   render() {
     const value = {
@@ -65,11 +62,11 @@ export class ThingProvider extends Component {
       setReviews: this.setReviews,
       clearThing: this.clearThing,
       addReview: this.addReview,
-    }
+    };
     return (
       <ThingContext.Provider value={value}>
         {this.props.children}
       </ThingContext.Provider>
-    )
+    );
   }
 }
